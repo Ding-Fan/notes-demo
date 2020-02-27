@@ -8,7 +8,7 @@ const ViewNotes = ({navigation}) => {
   const [notes, setNotes] = useState([]);
 
   const addNoteHandler = note => {
-    note.id = notes.length + 1;
+    note.id = `${notes.length + 1}`;
     setNotes(currentNotes => [...currentNotes, note]);
   };
 
@@ -48,7 +48,7 @@ const ViewNotes = ({navigation}) => {
           label="Add New Note"
           onPress={() =>
             navigation.navigate('AddNotes', {
-              addNoteHandler,,
+              addNoteHandler,
             })
           }
         />
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   listTitle: {
-    fontSize: 20
+    fontSize: 20,
   },
   fab: {
     position: 'absolute',
