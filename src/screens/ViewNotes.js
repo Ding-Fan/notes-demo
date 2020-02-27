@@ -11,19 +11,46 @@ const ViewNotes = ({navigation}) => {
     note.id = notes.length + 1;
     setNotes(currentNotes => [...currentNotes, note]);
   };
+
+  let content;
+
+  if (notes.length === 0) {
+    content = (
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>You don't have any notes. </Text>
+      </View>
+    );
+  } else {
+    content = (
+      <FlatList
+        data={notes}
+        renderItem={({item}) => (
+          <List.Item
+            title={item.noteTitle}
+            description={item.noteValue}
+            descriptionNumberOfLines={1}
+            titleStyle={styles.listTitle}
+          />
+        )}
+      />
+    );
+  }
+
   return (
     <>
       <Header titleText="Simple Note Taker" />
       <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>You don't have any notes. </Text>
-        </View>
+        {content}
         <FAB
           style={styles.fab}
           small
           icon="plus"
           label="Add New Note"
-          onPress={() => navigation.navigate('AddNotes')}
+          onPress={() =>
+            navigation.navigate('AddNotes', {
+              addNoteHandler,,
+            })
+          }
         />
       </View>
     </>
@@ -46,6 +73,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+  },
+  listTitle: {
+    fontSize: 20
   },
   fab: {
     position: 'absolute',
