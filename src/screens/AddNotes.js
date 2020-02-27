@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Text} from 'react-native-paper';
+import {IconButton, TextInput, FAB} from 'react-native-paper';
 
 import Header from '../components/Header';
 
 const AddNotes = () => {
+  const [noteTitle, setNoteTitle] = useState('');
+  const [noteValue, setNoteValue] = useState('');
   return (
     <>
       <Header titleText="New Note" />
