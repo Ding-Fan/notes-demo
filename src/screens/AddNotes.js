@@ -45,7 +45,7 @@ const AddNotes = ({navigation}) => {
           style={styles.fab}
           small
           icon="check"
-          disabled={!noteTitle.length}
+          disabled={!noteTitle.trim().length}
           onPress={() => onSaveNoteHandler()}
         />
       </View>
