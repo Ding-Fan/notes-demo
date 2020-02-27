@@ -1,21 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text, FAB} from 'react-native-paper';
 
+import Header from '../components/Header';
+
 const ViewNotes = ({navigation}) => {
+  const [notes, setNotes] = useState([]);
+
+  const addNoteHandler = note => {
+    note.id = notes.length + 1;
+    setNotes(currentNotes => [...currentNotes, note]);
+  };
   return (
-    <View style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>You don't have any notes. </Text>
+    <>
+      <Header titleText="Simple Note Taker" />
+      <View style={styles.container}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>You don't have any notes. </Text>
+        </View>
+        <FAB
+          style={styles.fab}
+          small
+          icon="plus"
+          label="Add New Note"
+          onPress={() => navigation.navigate('AddNotes')}
+        />
       </View>
-      <FAB
-        style={styles.fab}
-        small
-        icon="plus"
-        label="Add New Note"
-        onPress={() => navigation.navigate('AddNotes')}
-      />
-    </View>
+    </>
   );
 };
 
